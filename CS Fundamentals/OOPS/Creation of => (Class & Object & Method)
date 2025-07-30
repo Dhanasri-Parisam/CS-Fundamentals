@@ -1,0 +1,26 @@
+
+
+// The drive() method should be part of the Car's behavior
+class Car{
+    String brand;
+    int price;
+    
+    void drive(){
+        System.out.println(brand+" "+"is one of the best expeience");
+    }
+}
+
+class Main {
+    
+    public static void main(String[] args) {
+        
+        Car company = new Car();
+        company.brand = "BMW";
+        company.price = 500000000;
+        
+        System.out.println(company.brand);
+        System.out.println(company.price);
+        
+        company.drive();
+    }
+}
