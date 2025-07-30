@@ -1,0 +1,55 @@
+// Class representing a College
+class College {
+    String Course;
+    int NoOfStudents;
+
+    // Static variable to count total admissions
+    static int NoOfAdmissions = 0;
+
+    // Constructor to initialize course and number of students
+    public College(String Course, int NoOfStudents) {
+        this.Course = Course;
+        this.NoOfStudents = NoOfStudents;
+        NoOfAdmissions++; // Increment admission count on every object creation
+    }
+
+    // Method to display details
+    public void display() {
+        System.out.println("Course Name: " + Course);
+        System.out.println("Number of Students: " + NoOfStudents);
+        feeStructure();
+    }
+
+    // Method to calculate and display total fee
+    public void feeStructure() {
+        int per_student_fee = 100000;
+        int total = NoOfStudents * per_student_fee;
+        System.out.println("Total Fee = " + NoOfStudents + " * " + per_student_fee + " = " + total);
+    }
+
+    // Static method to show total number of admissions
+    public static void showAdmissionCount() {
+        System.out.println("Total Number of Admissions: " + NoOfAdmissions);
+    }
+}
+
+// Main class to run the program
+class Main {
+    public static void main(String[] args) {
+        // Creating object for BTECH
+        College btech = new College("BTECH", 1000);
+        btech.display();
+
+        System.out.println(); // For better output formatting
+
+        // Creating object for B.COM
+        College bcom = new College("B.COM", 2000);
+        bcom.display();
+
+        System.out.println(); // For better output formatting
+
+        // Show total number of admissions
+        College.showAdmissionCount();
+        
+    }
+}
