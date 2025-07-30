@@ -1,0 +1,52 @@
+// class creation
+class College {
+    String branch;
+    int students;
+    String location;
+
+    public College(String branch, int students, String location) {
+        this.branch = branch;
+        this.students = students;
+        this.location = location;
+    }
+
+    public void display(String collegebranch, int collegestudents, String colllocation) {
+        System.out.println(collegebranch + ": " + branch);
+        System.out.println("College students: " + collegestudents + ", Actual: " + students);
+        System.out.println("College location: " + colllocation + ", Actual: " + location);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Access Modifiers:
+
+        // public
+        // -> Accessible from everywhere (any class, any package)
+        // -> Used when code should be completely open
+
+        // private
+        // -> Accessible only within the same class
+        // -> Used for data hiding and encapsulation
+
+        // protected
+        // -> Accessible within the same package and in subclasses (even in different packages)
+        // -> Often used in inheritance
+
+        // default (no modifier)
+        // -> Accessible only within the same package
+        // -> Used when package-level access is sufficient
+
+        College pragathi = new College("Aiml", 150, "Andhra Pradesh");
+        pragathi.display("pragathi branch", 150, "Andhra Pradesh");
+
+        College aditya = new College("Cse", 250, "Andhra Pradesh");
+        aditya.display("aditya branch", 250, "Andhra Pradesh");
+    }
+}
+
+
+        College aditya = new College("CSE", 250);
+        aditya.display("aditya");
+    }
+}
