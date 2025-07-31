@@ -4,6 +4,7 @@ class College {
     int students;
     String location;
 
+    // constructor
     public College(String branch, int students, String location) {
         this.branch = branch;
         this.students = students;
