@@ -1,3 +1,58 @@
+
+
+
+
+/* Single Inheritance*/
+
+class Car {
+    String brand = "Toyota";
+    int price = 100000;
+
+    void display() {
+        System.out.println("Car Brand: " + brand);
+        System.out.println("Car Price: " + price);
+    }
+
+    void bikeInfoFromCar() {
+        System.out.println("Bike Brand: Tata");
+        System.out.println("Bike Price: " + price); // Reusing car's price
+    }
+}
+
+class Bike extends Car {
+    String bikebrand = "Hero";
+    int bikeprice = 80000;
+
+    void display() {
+        System.out.println("Bike Brand: " + bikebrand);
+        System.out.println("Bike Price: " + bikeprice);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.display();             // Car's display() method
+        car.bikeInfoFromCar();     // Displays bike info using car's price
+
+        System.out.println("----------------");
+
+        Bike bike = new Bike();
+        bike.display();            // Bike's display() method
+        System.out.println("Car inherited brand: " + bike.brand);  // Inherited from Car
+    }
+}
+
+
+
+
+
+
+
+
+
+/* hararical inheritance */
+
 // Car class with constructor and display method
 class Owner{
     String owner = "Dhanu";
