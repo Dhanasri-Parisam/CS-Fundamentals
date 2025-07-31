@@ -1,0 +1,107 @@
+/*
+Method Overloading means defining multiple methods in the same class with the same name, but with different:
+
+Number of parameters
+
+Data types of parameters
+
+Order of parameters
+
+🔔 It allows Java to determine which method to call based on the arguments passed at compile time. */
+
+Clean Java Code:
+-----------------------------------------------------------------------------------------------
+
+// Car class demonstrating method overloading
+class Car {
+    String brand;
+    int price;
+
+    // Constructor with parameters
+    Car(String brand, int price) {
+        this.brand = brand;
+        this.price = price;
+    }
+
+    // 1. drive() - No parameters
+    void drive() {
+        System.out.println("Drive without parameters:");
+        System.out.println("Brand: " + brand);
+        System.out.println("Price: " + price);
+    }
+
+    // 2. drive(String brand) - One parameter
+    void drive(String brand) {
+        System.out.println("Drive with 1 String parameter:");
+        System.out.println("Brand: " + brand);
+    }
+
+    // 3. drive(String brand, int price) - Two parameters
+    void drive(String brand, int price) {
+        System.out.println("Drive with 2 parameters (String, int):");
+        System.out.println("Brand: " + brand);
+        System.out.println("Price: " + price);
+    }
+
+    // 4. drive(int price, String brand) - Same types but different order
+    void drive(int price, String brand) {
+        System.out.println("Drive with 2 parameters (int, String):");
+        System.out.println("Price: " + price);
+        System.out.println("Brand: " + brand);
+    }
+}
+
+// Main class to test the drive() method overloads
+class Main {
+    public static void main(String[] args) {
+        System.out.println("🚗 Demonstrating method overloading with 'drive()' in Car class:\n");
+
+        // Creating a Car object
+        Car company = new Car("BMW", 500000);
+
+        // Call 1: No parameters
+        company.drive();
+
+        System.out.println();
+
+        // Call 2: One String parameter
+        company.drive("Mercedes");
+
+        System.out.println();
+
+        // Call 3: Two parameters - (String, int)
+        company.drive("Audi", 300000);
+
+        System.out.println();
+
+        // Call 4: Two parameters - (int, String) → Order matters!
+        company.drive(450000, "Hyundai");
+    }
+}
+
+
+/*
+🚗 Demonstrating method overloading with 'drive()' in Car class:
+
+Drive without parameters:
+Brand: BMW
+Price: 500000
+
+Drive with 1 String parameter:
+Brand: Mercedes
+
+Drive with 2 parameters (String, int):
+Brand: Audi
+Price: 300000
+
+Drive with 2 parameters (int, String):
+Price: 450000
+Brand: Hyundai
+
+*/
+
+/*
+void drive(String brand, int price) { }
+void drive(String brand, int cost) { }  // ❌ Not allowed (same signature)
+
+*/
