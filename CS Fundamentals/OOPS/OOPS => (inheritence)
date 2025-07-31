@@ -1,0 +1,78 @@
+// Car class with constructor and display method
+class Owner{
+    String owner = "Dhanu";
+    int age = 25;
+    int phone = 123;
+    void fun(){
+        System.out.println("owner class fun");
+    }
+}
+
+class Car extends Owner{
+    String brand;
+    int price;
+
+    // Constructor to initialize brand and price
+    Car(String brand, int price) {
+        this.brand = brand;
+        this.price = price;
+    }
+
+    // Method to show car details
+    void display() {
+        System.out.println("Car Brand: " + brand);
+        System.out.println("Car Price: " + price);
+    }
+
+    // Method to simulate driving behavior
+    void drive() {
+        System.out.println(brand + " gives one of the best driving experiences.(metho)");
+    }
+}
+
+// Bus class with constructor and display method
+class Bus extends Owner{
+    String brandname;
+    int buscost;
+    int ticketprice;
+
+    // Constructor to initialize bus details
+    Bus(String brandname, int buscost, int ticketprice) {
+        this.brandname = brandname;
+        this.buscost = buscost;
+        this.ticketprice = ticketprice;
+    }
+
+    // Method to show bus details
+    public void display() {
+        System.out.println("Bus Brand: " + brandname);
+        System.out.println("Bus Cost: " + buscost);
+        System.out.println("Ticket Price: " + ticketprice);
+    }
+}
+
+// Main class with the main method
+class Main {
+    public static void main(String[] args) {
+
+        Owner details = new Owner();
+        details.fun();
+        
+        System.out.println();
+
+        // Creating Car object and calling its methods
+        Car company = new Car("BMW", 500000000);
+        company.display();
+        System.out.println("i am inhertided from owner class: " + company.owner);
+        company.drive();
+
+        System.out.println(); // Just for spacing
+
+        // Creating Bus object and calling its method
+        Bus buscompany = new Bus("Itachi", 2000000, 300);
+        buscompany.display();
+        System.out.println("i am also inhertided from owner class: " + buscompany.phone);
+        
+        
+    }
+}
