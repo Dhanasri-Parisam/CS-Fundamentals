@@ -1,0 +1,134 @@
+/*
+  Method Overriding occurs when a subclass (child class) provides a specific implementation of a method that is already defined 
+  in its superclass (parent class).
+
+  class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+  }
+  
+  class Dog extends Animal {
+      @Override
+      void sound() {
+          System.out.println("Dog barks");
+      }
+  }
+
+
+🧠 Why Use Overriding?
+To achieve:
+
+✅ Runtime Polymorphism
+
+✅ Dynamic method dispatch
+
+✅ Custom behavior in child class
+
+📜 Rules for Overriding:
+Rule	Description
+✅ Same Method Name => 	  Must be exactly the same as in the parent
+✅ Same Parameters => 	  Number, type, and order of parameters must match
+✅ Same or Covariant =>   Return Type	Return type must be same or a subclass
+✅ Access Level	 =>       Can't reduce access (e.g., public → private is invalid)
+✅ Can't Override Final Methods =>	       A method marked final cannot be overridden
+✅ Static Methods Can't Be Overridden	=>   They are hidden, not overridden
+✅ Use @Override annotation	=>             Optional, but recommended for compile-time checking
+
+
+🔍 Overriding                     vs                                   Overloading
+Feature	Overriding	Overloading
+Classes involved	Parent-child (Inheritance required)	      Same class (can also be in subclass)
+Method name	Same	                                          Same
+Parameters	                                                Must be the same	Must be different
+Return type	Same or covariant	                              Can be different
+Polymorphism	Runtime	Compile-time
+Access Modifier	Can’t be more restrictive	                  No such restriction
+
+*/
+
+
+
+// Parent class
+class Owner {
+    String ownername;
+    int age = 30;
+    int phone = 921839329;
+
+    // Overloaded method - Version 1 (takes an int argument)
+    void drive(int a) {
+        System.out.println("(overload) Parent class drive(int): " + a);
+    }
+
+    // Overloaded method - Version 2 (takes a String argument)
+    void drive(String a) {
+        System.out.println("(overload) Parent class drive(String): " + a);
+    }
+
+    // Method to be overridden - Version 3 (same method name but class overrides me)
+    void drive() {
+        System.out.println("Owner's default drive()");
+    }
+}
+
+// Child class that extends Owner
+class Car extends Owner {
+    String brand;
+    int price;
+
+    // Constructor to initialize brand and price
+    Car(String brand, int price) {
+        this.brand = brand;
+        this.price = price;
+    }
+    
+    // This method overrides the drive() method from Owner class
+    @Override
+    void drive() {
+        System.out.println();
+        System.out.println("method overrides the drive() method from Owner class");
+        System.out.println("Child class drive() - Car details:");
+        System.out.println("Brand: " + brand);
+        System.out.println("Price: " + price);
+    }
+}
+
+// Main class to run the program
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Demonstrating Method Overriding vs Overloading:\n");
+
+        // Create a Car object (Car is a subclass of Owner)
+        Car company = new Car("BMW", 500000);
+
+        // 1. This calls the overloaded method in the parent class
+        company.drive(2); // Output: Parent class drive(int): 2
+
+        // 2. This also calls an overloaded method in the parent class
+        company.drive("I am overloaded with a String"); // Output: Parent class drive(String): ...
+
+        // 3. This calls the overridden method in the child class
+        company.drive(); // Output: Child class drive() - Car details...
+    }
+}
+
+
+
+/*
+The issue is that there is no method drive() with zero parameters in the parent class Owner, 
+so Java gives an error because @Override means:
+"I am overriding a method that exists in the parent class with exactly the same method signature.
+" Since Owner does not have void drive() (no-arg version), you're not actually overriding anything — you're just defining a new method in the child class Car.
+
+ERROR!
+Main.java:25: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+1 error
+*/
+
+
+
+
+
+
