@@ -1,0 +1,38 @@
+/* 🔰 5. Hybrid Inheritance (Using Interface)
+    ✅ Definition:
+    Combination of more than one type of inheritance. */
+
+interface A {
+    void methodA();
+}
+
+interface B extends A {
+    void methodB();
+}
+
+interface C extends A {
+    void methodC();
+}
+
+class D implements B, C {
+    public void methodA() {
+        System.out.println("From A");
+    }
+
+    public void methodB() {
+        System.out.println("From B");
+    }
+
+    public void methodC() {
+        System.out.println("From C");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        D obj = new D();
+        obj.methodA(); // Output: From A
+        obj.methodB(); // Output: From B
+        obj.methodC(); // Output: From C
+    }
+}
