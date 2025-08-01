@@ -1,0 +1,31 @@
+/*
+✅ Definition:
+A child class inherits from a class, which itself inherits from another class.
+*/
+
+class GrandParent {
+    void house() {
+        System.out.println("Grandparent's house");
+    }
+}
+
+class Parent extends GrandParent {
+    void car() {
+        System.out.println("Parent's car");
+    }
+}
+
+class Child extends Parent {
+    void bike() {
+        System.out.println("Child's bike");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.house(); // Output: Grandparent's house
+        c.car();   // Output: Parent's car
+        c.bike();  // Output: Child's bike
+    }
+}
