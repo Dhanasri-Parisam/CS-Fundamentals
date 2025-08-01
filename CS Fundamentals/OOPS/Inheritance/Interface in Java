@@ -49,3 +49,42 @@ public class Main {
 }
 
 
+
+/*
+
+// Interface Rules:
+// Rule 1: Interface methods should not have a body (unless default/static)
+// Rule 2: Implementing classes must use 'public' when implementing methods
+// Rule 3: Java supports multiple inheritance through interfaces
+// Rule 4: Interface variables must be initialized (they are public static final)
+
+interface Child1 {
+    String child1name = "child1"; // Constant
+}
+
+interface Child2 extends Child1 {
+    String child2name = "child2"; 
+    void display();
+}
+
+class Parent implements Child1, Child2 {
+    String parentname = "Parent"; // Instance variable
+
+    public void display() {
+        System.out.println(child1name);       // ✅ inherited from Child1
+        System.out.println(Parent.child2name); // ✅ static access via class
+        System.out.println(this.parentname);  // ✅ instance variable
+
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        parent.display();
+    }
+}
+
+
+*/
+
