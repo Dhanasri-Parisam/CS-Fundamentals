@@ -1,0 +1,51 @@
+/*
+🔷 What is an Interface in Java?
+An interface is a blueprint of a class. It contains:
+
+Abstract methods (no body)
+
+Constants (variables are public static final by default)
+
+From Java 8+, default and static methods with bodies
+
+From Java 9+, private methods (only inside the interface)
+
+✅ Why Use Interfaces?
+100% abstraction (before Java 8)
+
+Multiple inheritance (Java doesn't allow class-to-class multiple inheritance, but allows interface-to-class)
+
+Useful in polymorphism, loose coupling, testability
+*/
+
+// Interface Rules:
+// Rule 1: Interface methods should not have a body (unless default/static)
+// Rule 2: Implementing classes must use 'public' when implementing methods
+// Rule 3: Java supports multiple inheritance through interfaces
+// Rule 4: Interface variables must be initialized (they are public static final)
+
+interface Child1 {
+    String child1name = "child1"; // Constant
+}
+
+interface Child2 extends Child1 {
+    String child2name = "child2"; // Constant
+}
+
+class Parent implements Child1, Child2 {
+    String parentname = "Parent"; // Instance variable
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        
+        System.out.println(Parent.child1name);   // ✅ using class name instead of interface name
+        System.out.println(Parent.child2name);   // ✅ using class name instead of interface name
+        System.out.println(parent.parentname);   // Instance variable
+        System.out.println(parent.child1name);   // via object (also valid)
+        System.out.println(parent.child2name);   // via object (also valid)
+    }
+}
+
+
