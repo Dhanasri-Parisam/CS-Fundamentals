@@ -1,0 +1,30 @@
+/* 🔰 3. Hierarchical Inheritance
+    ✅ Definition:
+    Multiple child classes inherit from the same parent class. */
+
+class DAD{
+    String name ="I am dad";
+    int age = 60;
+}
+
+class CHILD1 extends DAD{
+    String name1 = "child1";
+    int age = 20;
+}
+
+class CHILD2 extends DAD{
+    String name2 = "child2";
+    int age = 25;
+}
+
+
+
+class Main {
+    public static void main(String[] args) {
+        DAD dad = new DAD();
+        CHILD1 child1 = new CHILD1();
+        System.out.println(child1.name);
+        CHILD2 child2 = new CHILD2();
+        System.out.println(child2.name);
+    }
+}
