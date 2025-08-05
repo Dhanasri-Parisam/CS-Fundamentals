@@ -1,53 +1,157 @@
-// class creation
-class College {
-    String branch;
-    int students;
-    String location;
+🧠 Let's break it down clearly:
+Access Modifier	    Same Class	Same Package (Subclass)	Same Package (Non-subclass)	Different Package (Subclass)	Different Package (Non-subclass)
+public	            ✅ Yes	    ✅ Yes	                ✅ Yes	                    ✅ Yes	                        ✅ Yes
+protected	        ✅ Yes	    ✅ Yes	                ✅ Yes	                    ✅ Yes	                        ❌ No
+default 	        ✅ Yes	    ✅ Yes	                ✅ Yes	                    ❌ No	                        ❌ No
+private	            ✅ Yes	    ❌ No	                ❌ No	                    ❌ No	                        ❌ No
 
-    // constructor
-    public College(String branch, int students, String location) {
-        this.branch = branch;
-        this.students = students;
-        this.location = location;
-    }
 
-    public void display(String collegebranch, int collegestudents, String colllocation) {
-        System.out.println(collegebranch + ": " + branch);
-        System.out.println("College students: " + collegestudents + ", Actual: " + students);
-        System.out.println("College location: " + colllocation + ", Actual: " + location);
+
+// same class all are accecept public , protected , default , private
+
+class Car{
+    public String carname1 = "Tayota";
+    protected String carname2 = "BMW";
+    String carname3 = "Tesla";
+    private String carname4 = "Tata";
+    
+    void display(){
+        System.out.println("carname1: " + carname1);
+        System.out.println("carname2: " + carname2);
+        System.out.println("carname3: " + carname3);
+        System.out.println("carname4: " + carname4);
     }
 }
-
-public class Main {
-    public static void main(String[] args) {
-        // Access Modifiers:
-
-        // public
-        // -> Accessible from everywhere (any class, any package)
-        // -> Used when code should be completely open
-
-        // private
-        // -> Accessible only within the same class
-        // -> Used for data hiding and encapsulation
-
-        // protected
-        // -> Accessible within the same package and in subclasses (even in different packages)
-        // -> Often used in inheritance
-
-        // default (no modifier)
-        // -> Accessible only within the same package
-        // -> Used when package-level access is sufficient
-
-        College pragathi = new College("Aiml", 150, "Andhra Pradesh");
-        pragathi.display("pragathi branch", 150, "Andhra Pradesh");
-
-        College aditya = new College("Cse", 250, "Andhra Pradesh");
-        aditya.display("aditya branch", 250, "Andhra Pradesh");
-    }
+    
+public class MyClass {
+  public static void main(String args[]) {
+    Car car = new Car();
+    car.display();
+  }
 }
 
 
-        College aditya = new College("CSE", 250);
-        aditya.display("aditya");
+// 2. same package(not sub class) all are accecept public , protected , default , except private
+
+class Car{
+    public String carname1 = "Tayota";
+    protected String carname2 = "BMW";
+    String carname3 = "Tesla";
+    private String carname4 = "Tata";
+}
+    
+public class MyClass {
+  public static void main(String args[]) {
+    Car car = new Car();
+    System.out.println("carname1: " + car.carname1);
+    System.out.println("carname2: " + car.carname2);
+    System.out.println("carname3: " + car.carname3);
+    // System.out.println("carname4: " + car.carname4);
+  }
+}
+
+// 3. same package(sub class) all are accecept public , protected , default , except private
+
+class Car {
+    public String carname1 = "Tayota";
+    protected String carname2 = "BMW";
+    String carname3 = "Tesla";    // package-private (default)
+    private String carname4 = "Tata";
+
+    // Subclass (inner class) in the same package
+    class Vehicles extends Car {
+        void printNames() {
+            System.out.println("carname1: " + carname1); // YES
+            System.out.println("carname2: " + carname2); // YES
+            System.out.println("carname3: " + carname3); // YES
+            // System.out.println("carname4: " + carname4); // NO, Compile Error
+        }
     }
 }
+
+    
+public class MyClass {
+  public static void main(String args[]) {
+    Car car = new Car();
+    
+    Car.Vehicles vehicles = car.new Vehicles();
+    // Correct way to instantiate inner class:
+    vehicles.printNames();
+    
+    
+  }
+}
+
+// 4. Different Package (Subclass)
+public: accessible.
+
+protected: accessible, but only via inheritance (using this.carname2 inside the subclass, not super.carname2 with an instance).
+
+default: not accessible (restricted to the same package).
+
+private: not accessible.
+-----------------------------------------------------------------------------------------------------
+package pkg1;
+public class Car {
+    public String carname1 = "Tayota";
+    protected String carname2 = "BMW";
+    String carname3 = "Tesla";          // default/package-private
+    private String carname4 = "Tata";
+}
+
+package pkg2;
+import pkg1.Car;
+
+public class SportsCar extends Car {
+    void printNames() {
+        System.out.println(carname1);  // YES (public)
+        System.out.println(carname2);  // YES (protected via inheritance)
+        // System.out.println(carname3); // NO (default/package-private)
+        // System.out.println(carname4); // NO (private)
+    }
+}
+
+
+4. different package(non subclass) public -> access || protected default private -> not access
+public: accessible.
+
+protected: not accessible (not a subclass, not in the same package).
+
+default: not accessible.
+
+private: not accessible.
+----------------------------------------------------------------------------------------------
+
+package pkg1;
+
+public class Car {
+    public String carname1 = "Tayota";
+    protected String carname2 = "BMW";
+    String carname3 = "Tesla";    // default/package-private
+    private String carname4 = "Tata";
+}
+
+
+package pkg2;
+
+import pkg1.Car;
+
+public class Mechanic {
+    public void printNames() {
+        Car car = new Car();
+        System.out.println("carname1: " + car.carname1); // YES (public)
+        // System.out.println("carname2: " + car.carname2); // NO, protected inaccessible
+        // System.out.println("carname3: " + car.carname3); // NO, default inaccessible
+        // System.out.println("carname4: " + car.carname4); // NO, private
+    }
+}
+
+----------------------------------------------------------------------------------------------------
+Modifier	Different Package Subclass	Different Package Non-Subclass
+public	    Yes	                        Yes
+protected	Yes	                        No
+default	    No	                        No
+private	    No	                        No
+-------------------------------------------------------------------------------------------------
+
+
